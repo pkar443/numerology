@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #5f6b7a;
+  --accent-gold: #f59e0b;
+  --accent-rose: #fb7185;
+  --accent-sky: #38bdf8;
+  --accent-violet: #a78bfa;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--surface-soft);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 18px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+.hero-sky {
+  background:
+    radial-gradient(1200px 600px at 10% 15%, rgba(251, 191, 36, 0.35), transparent 60%),
+    radial-gradient(900px 500px at 95% 10%, rgba(125, 211, 252, 0.45), transparent 55%),
+    radial-gradient(700px 400px at 20% 90%, rgba(244, 114, 182, 0.25), transparent 55%),
+    linear-gradient(135deg, #fdf2f8 0%, #f0f9ff 45%, #fefce8 100%);
+  background-size: 200% 200%;
+  animation: aurora 16s ease infinite;
+}
+
+.stars-overlay::before,
+.stars-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.2px 1.2px at 30px 40px, rgba(255, 255, 255, 0.8) 40%, transparent 42%),
+    radial-gradient(1.4px 1.4px at 120px 80px, rgba(255, 255, 255, 0.6) 40%, transparent 42%),
+    radial-gradient(1px 1px at 200px 140px, rgba(255, 255, 255, 0.7) 40%, transparent 42%),
+    radial-gradient(1px 1px at 80px 190px, rgba(255, 255, 255, 0.5) 40%, transparent 42%),
+    radial-gradient(1.2px 1.2px at 160px 220px, rgba(255, 255, 255, 0.6) 40%, transparent 42%);
+  background-size: 260px 260px;
+  opacity: 0.65;
+}
+
+.stars-overlay::after {
+  transform: scale(1.1) rotate(6deg);
+  opacity: 0.4;
+}
+
+.universe-orb {
+  position: relative;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 120deg,
+    #f59e0b,
+    #fb7185,
+    #38bdf8,
+    #a78bfa,
+    #f59e0b
+  );
+  box-shadow:
+    0 20px 60px rgba(56, 189, 248, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.4);
+  animation: spin 22s linear infinite;
+}
+
+.universe-orb::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), transparent 60%);
+  opacity: 0.8;
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px dashed rgba(148, 163, 184, 0.5);
+  animation: spin 28s linear infinite;
+}
+
+.orbit-ring.delayed {
+  animation-duration: 32s;
+  animation-direction: reverse;
+  border-color: rgba(244, 114, 182, 0.45);
+}
+
+.card-surface {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+}
+
+.hover-lift {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+}
+
+.print-hidden {
+}
+
+.print-card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+  }
+
+  .hero-sky,
+  .stars-overlay,
+  .orbit-ring,
+  .universe-orb {
+    display: none !important;
+  }
+
+  .print-hidden {
+    display: none !important;
+  }
+
+  .card-surface,
+  .hover-lift {
+    box-shadow: none;
+    border-color: #e5e7eb;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
