@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Dax Shepard",
+    "dob_raw": "Jan 02, 1975",
+    "dob_iso": "1975-01-02",
+    "derived": 7,
+    "counts9": "210010201",
+    "plane_mask": 16,
+    "profile_url": "https://www.bornglorious.com/person/?pi=462354",
+    "birthplace": "",
+    "profession": "",
+    "source_page": "https://www.bornglorious.com/world/birthday/?pd=today&pg=1"
+  },
+  {
+    "name": "Jagmeet Singh",
+    "dob_raw": "Jan 02, 1979",
+    "dob_iso": "1979-01-02",
+    "derived": 2,
+    "counts9": "220000102",
+    "plane_mask": 0,
+    "profile_url": "https://www.bornglorious.com/person/?pi=6122681",
+    "birthplace": "",
+    "profession": "",
+    "source_page": "https://www.bornglorious.com/world/birthday/?pd=today&pg=1"
+  },
+  {
+    "name": "Cuba Gooding Jr.",
+    "dob_raw": "Jan 02, 1968",
+    "dob_iso": "1968-01-02",
+    "derived": 9,
+    "counts9": "210001012",
+    "plane_mask": 4,
+    "profile_url": "https://www.bornglorious.com/person/?pi=136209",
+    "birthplace": "",
+    "profession": "",
+    "source_page": "https://www.bornglorious.com/world/birthday/?pd=today&pg=1"
+  },
+  {
+    "name": "Taye Diggs",
+    "dob_raw": "Jan 02, 1971",
+    "dob_iso": "1971-01-02",
+    "derived": 3,
+    "counts9": "311000101",
+    "plane_mask": 0,
+    "profile_url": "https://www.bornglorious.com/person/?pi=534006",
+    "birthplace": "",
+    "profession": "",
+    "source_page": "https://www.bornglorious.com/world/birthday/?pd=today&pg=1"
+  },
+  {
+    "name": "Kate Bosworth",
+    "dob_raw": "Jan 02, 1983",
+    "dob_iso": "1983-01-02",
+    "derived": 6,
+    "counts9": "211001011",
+    "plane_mask": 4,
+    "profile_url": "https://www.bornglorious.com/person/?pi=236822",
+    "birthplace": "",
+    "profession": "",
+    "source_page": "https://www.bornglorious.com/world/birthday/?pd=today&pg=1"
+  }
+]
