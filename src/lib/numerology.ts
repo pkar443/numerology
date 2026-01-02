@@ -734,11 +734,7 @@ export function getLoShuCountsWithDerived(
   derivedNumbers: DerivedNumbers,
 ): LoShuCounts {
   const counts = getLoShuCounts(dob);
-  [derivedNumbers.day, derivedNumbers.month, derivedNumbers.year, derivedNumbers.lifePath].forEach(
-    (digit) => {
-      counts[digit] += 1;
-    },
-  );
+  counts[derivedNumbers.lifePath] += 1;
   return counts;
 }
 

@@ -7,6 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ChaldeanBreakdown from "@/components/ChaldeanBreakdown";
 import GuidanceCard from "@/components/GuidanceCard";
 import LoShuGrid from "@/components/LoShuGrid";
+import CelebrityMatchCard from "@/components/CelebrityMatchCard";
 import PlaneBadges from "@/components/PlaneBadges";
 import ShareSummary from "@/components/ShareSummary";
 import SiteHeader from "@/components/SiteHeader";
@@ -161,7 +162,7 @@ export default function ResultPage() {
               </h2>
             </div>
             <p className="text-sm text-slate-500">
-              DOB digits plus derived numbers.
+              DOB digits plus your life path (derived) number.
             </p>
           </div>
           <div className="mt-6">
@@ -169,9 +170,14 @@ export default function ResultPage() {
           </div>
           <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Derived numbers plotted
+              Derived number plotted
             </p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+              <span
+                className={`rounded-full px-3 py-2 ${chipStyles[analysis.derivedNumbers.lifePath]}`}
+              >
+                Life Path (Derived): {analysis.derivedNumbers.lifePath}
+              </span>
               <span
                 className={`rounded-full px-3 py-2 ${chipStyles[analysis.derivedNumbers.day]}`}
               >
@@ -187,16 +193,16 @@ export default function ResultPage() {
               >
                 Year (Conductor/Destiny): {analysis.derivedNumbers.year}
               </span>
-              <span
-                className={`rounded-full px-3 py-2 ${chipStyles[analysis.derivedNumbers.lifePath]}`}
-              >
-                Life Path: {analysis.derivedNumbers.lifePath}
-              </span>
             </div>
             <p className="mt-3 text-sm text-slate-500">
-              These are added to your grid counts for a fuller view.
+              The life path number is added once to your grid counts; day, month, and
+              year are shown for context.
             </p>
           </div>
+        </AnimatedSection>
+
+        <AnimatedSection className="print-hidden">
+          <CelebrityMatchCard dobIso={input.dob} />
         </AnimatedSection>
 
         <AnimatedSection className="hover-lift rounded-3xl border border-slate-100 bg-white p-6 shadow-sm print-card">
