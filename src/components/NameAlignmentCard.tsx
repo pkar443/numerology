@@ -56,7 +56,7 @@ export default function NameAlignmentCard({ alignment }: NameAlignmentCardProps)
                   {suggestion.message}
                 </p>
                 <p className="mt-1">
-                  New sum: {suggestion.newSum} -> {suggestion.newReduced}
+                  New sum: {suggestion.newSum} to {suggestion.newReduced}
                 </p>
               </div>
             ))}

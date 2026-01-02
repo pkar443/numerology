@@ -25,7 +25,7 @@ export default function NumerologyForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<UserInput>({
-    resolver: zodResolver(userInputSchema),
+    resolver: zodResolver<UserInput, any, UserInput>(userInputSchema),
     defaultValues: {
       fullName: "",
       dob: "",

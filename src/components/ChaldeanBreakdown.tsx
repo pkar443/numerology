@@ -17,10 +17,10 @@ export default function ChaldeanBreakdown({ name, result }: ChaldeanBreakdownPro
         </div>
         <div className="rounded-2xl bg-amber-50 px-5 py-3 text-center">
           <p className="text-xs uppercase tracking-[0.2em] text-amber-600">
-            Raw Sum -> Reduced
+            Raw Sum to Reduced
           </p>
           <p className="mt-1 text-xl font-semibold text-amber-700">
-            {result.rawSum} -> {result.reduced}
+            {result.rawSum} to {result.reduced}
           </p>
         </div>
       </div>

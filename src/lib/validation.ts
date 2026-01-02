@@ -1,21 +1,6 @@
 import { z } from "zod";
 import type { UserInput } from "./numerology";
 
-const emptyToUndefined = (value: unknown) => {
-  if (typeof value === "string" && value.trim() === "") {
-    return undefined;
-  }
-  return value;
-};
-
-const normalizeMobileInput = (value: unknown) => {
-  if (typeof value !== "string") {
-    return value;
-  }
-  const digits = value.replace(/\D/g, "");
-  return digits.length > 0 ? digits : undefined;
-};
-
 const dateNotInFuture = (value: string) => {
   const parsed = new Date(`${value}T00:00:00`);
   if (Number.isNaN(parsed.getTime())) {
@@ -26,7 +11,31 @@ const dateNotInFuture = (value: string) => {
   return parsed.getTime() <= today.getTime();
 };
 
-export const userInputSchema: z.ZodType<UserInput> = z.object({
+const trimmedString = z.string().trim();
+
+const optionalMobileSchema = (label: string) =>
+  trimmedString
+    .refine((value) => {
+      if (!value) {
+        return true;
+      }
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 7 && digits.length <= 15;
+    }, `${label} must be 7-15 digits.`)
+    .optional();
+
+const optionalEmailSchema = trimmedString
+  .refine((value) => {
+    if (!value) {
+      return true;
+    }
+    return z.string().email().safeParse(value).success;
+  }, "Enter a valid email address.")
+  .optional();
+
+const optionalTextSchema = trimmedString.optional();
+
+export const userInputSchema: z.ZodType<UserInput, UserInput> = z.object({
   fullName: z
     .string()
     .trim()
@@ -35,18 +44,9 @@ export const userInputSchema: z.ZodType<UserInput> = z.object({
     .string()
     .min(1, "Date of birth is required.")
     .refine(dateNotInFuture, "Date of birth must be valid and not in the future."),
-  mobile: z.preprocess(
-    normalizeMobileInput,
-    z
-      .string()
-      .regex(/^\d{7,15}$/, "Mobile must be 7-15 digits.")
-      .optional(),
-  ),
-  email: z.preprocess(
-    emptyToUndefined,
-    z.string().email("Enter a valid email address.").optional(),
-  ),
-  houseNo: z.preprocess(emptyToUndefined, z.string().trim().optional()),
+  mobile: optionalMobileSchema("Mobile"),
+  email: optionalEmailSchema,
+  houseNo: optionalTextSchema,
 });
 
 export const compatibilitySchema = z.object({
@@ -58,14 +58,8 @@ export const compatibilitySchema = z.object({
     .string()
     .min(1, "Person A date of birth is required.")
     .refine(dateNotInFuture, "Person A date of birth must be valid."),
-  personAMobile: z.preprocess(
-    normalizeMobileInput,
-    z
-      .string()
-      .regex(/^\\d{7,15}$/, "Person A mobile must be 7-15 digits.")
-      .optional(),
-  ),
-  personAHouse: z.preprocess(emptyToUndefined, z.string().trim().optional()),
+  personAMobile: optionalMobileSchema("Person A mobile"),
+  personAHouse: optionalTextSchema,
   personBName: z
     .string()
     .trim()
@@ -74,14 +68,8 @@ export const compatibilitySchema = z.object({
     .string()
     .min(1, "Person B date of birth is required.")
     .refine(dateNotInFuture, "Person B date of birth must be valid."),
-  personBMobile: z.preprocess(
-    normalizeMobileInput,
-    z
-      .string()
-      .regex(/^\\d{7,15}$/, "Person B mobile must be 7-15 digits.")
-      .optional(),
-  ),
-  personBHouse: z.preprocess(emptyToUndefined, z.string().trim().optional()),
+  personBMobile: optionalMobileSchema("Person B mobile"),
+  personBHouse: optionalTextSchema,
 });
 
 export type CompatibilityFormValues = z.infer<typeof compatibilitySchema>;
